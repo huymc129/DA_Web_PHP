@@ -14,7 +14,7 @@
                         </div>
                     @endif
                     @if (!isset($movie))
-                        <form action="{{ route('movie.store') }}" method="POST">
+                        <form action="{{ route('movie.store') }}" method="POST" enctype="multipart/form-data">
                     @else
                         <form action="{{ route('movie.update', $movie->id) }}" method="POST" enctype="multipart/form-data">
                             @method('PUT') <!-- Thêm phương thức PUT -->
@@ -46,40 +46,47 @@
                             </div>
                             <div class="form-group">
                                 <label for="category">Category</label>
-                                <select name="category_id" class="form-control" id="country">
+                                <select name="category_id" class="form-control" id="category">
                                     <option value="">--Chọn danh mục--</option>
-                                    @foreach ($category as $key => $value)
-                                        <option value="{{ $key }}" {{ isset($movie) && $movie->category_id == $key ? 'selected' : '' }}>
-                                            {{ $value }}
+                                    @foreach ($category as $id => $title)
+                                        <option value="{{ $id }}" {{ isset($movie) && $movie->category_id == $id ? 'selected' : '' }}>
+                                            {{ $title }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
+
                             <div class="form-group">
                                 <label for="country">Country</label>
                                 <select name="country_id" class="form-control" id="country">
                                     <option value="">--Chọn quốc gia--</option>
-                                    @foreach ($country as $key => $value)
-                                        <option value="{{ $key }}" {{ isset($movie) && $movie->country_id == $key ? 'selected' : '' }}>
-                                            {{ $value }}
+                                    @foreach ($country as $id => $title)
+                                        <option value="{{ $id }}" {{ isset($movie) && $movie->country_id == $id ? 'selected' : '' }}>
+                                            {{ $title }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
+
                             <div class="form-group">
                                 <label for="genre">Genre</label>
-                                <select name="genre_id" class="form-control" id="country">
+                                <select name="genre_id" class="form-control" id="genre">
                                     <option value="">--Chọn thể loại--</option>
-                                    @foreach ($genre as $key => $value)
-                                        <option value="{{ $key }}" {{ isset($movie) && $movie->genre == $key ? 'selected' : '' }}>
-                                            {{ $value }}
+                                    @foreach ($genre as $id => $title)
+                                        <option value="{{ $id }}" {{ isset($movie) && $movie->genre_id == $id ? 'selected' : '' }}>
+                                            {{ $title }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
+
+
                             <div class="form-group">
                                 <label for="Image">Image</label>
                                 <input type="file" name="image" class="form-control-file" id="image">
+                                @if(isset($movie))
+                                    <<img width="20%" src="{{ url('uploads/movie/' . $movie->image) }}">                            
+                                @endif
                             </div>
                             @if (!isset($movie))
                                 <button type="submit" class="btn btn-success">Thêm dữ liệu</button>
@@ -95,9 +102,13 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Title</th>
+                        <th scope="col">Image</th>
                         <th scope="col">Description</th>
                         <th scope="col">Slug</th>
                         <th scope="col">Active/Inactive</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Genre</th>
+                        <th scope="col">Country</th>
                         <th scope="col">Manage</th>
                     </tr>
                 </thead>
@@ -106,6 +117,7 @@
                         <tr>
                             <th scope="row">{{$key}}</th>
                             <td>{{$cate->title}}</td>
+                            <td><img width="60%" src="{{asset('uploads/movie/'.$cate->image)}}"></td>
                             <td>{{$cate->description}}</td>
                             <td>{{$cate->slug}}</td>
                             <td>
@@ -115,6 +127,9 @@
                                     Không hiển thị
                                 @endif
                             </td>
+                            <td>{{$cate->category->title}}</td>
+                            <td>{{$cate->genre->title}}</td>
+                            <td>{{$cate->country->title}}</td>
                             <td>
                                 <form action="{{ route('movie.destroy', $cate->id) }}" method="POST"
                                     onsubmit="return confirm('Bạn có muốn xóa?')">
