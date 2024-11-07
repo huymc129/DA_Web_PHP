@@ -21,10 +21,15 @@
                     @endif
                             @csrf
                             <div class="form-group">
-                                <label for="title" class="form-label">Title</label>
+                                <label for="title" class="form-label">Tên</label>
                                 <input type="text" name="title" value="{{ isset($movie) ? $movie->title : '' }}"
                                     class="form-control" placeholder="Nhập dữ liệu" id="slug" ,
                                     onkeyup="ChangeToSlug()">
+                            </div>
+                            <div class="form-group">
+                                <label for="Tên tiếng anh" class="form-label">Tên tiếng anh</label>
+                                <input type="text" name="name_eng" value="{{ isset($movie) ? $movie->name_eng : '' }}"
+                                    class="form-control" placeholder="Nhập dữ liệu">
                             </div>
                             <div class="form-group">
                                 <label for="slug" class="form-label">Slug</label>
@@ -77,6 +82,14 @@
                                             {{ $title }}
                                         </option>
                                     @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="Hot">Hot</label>
+                                <select name="phim_hot" class="form-control" id="phim_hot">
+                                    <option value="">--Chọn thể loại--</option>
+                                    <option value="1" {{ old('status', isset($movie) ? $movie->phim_hot : null) == '1' ? 'selected' : '' }}>Có</option>
+                                    <option value="0" {{ old('status', isset($movie) ? $movie->phim_hot : null) == '0' ? 'selected' : '' }}>Không</option>
                                 </select>
                             </div>
 
