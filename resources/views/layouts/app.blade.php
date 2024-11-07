@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
+    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    
 
     <!-- Scripts -->
 
@@ -83,7 +87,10 @@
     </div>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"> </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
     <script type="text/javascript">
+    let table = new DataTable('#tablephim');
  
     function ChangeToSlug()
         {
@@ -117,7 +124,35 @@
                 //In slug ra textbox có id “slug”
             document.getElementById('convert_slug').value = slug;
         }
-
     </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.order_position').sortable({
+                placeholder: 'ui-state-highlight',
+                update: function(event, ui) {
+                    var array_id = [];
+                    $('.order_position tr').each(function() {
+                        array_id.push($(this).attr('id'));
+                    });
+    
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        url: "{{ route('resorting') }}", // Đã thêm dấu phẩy ở đây
+                        method: "POST",
+                        data: { array_id: array_id },
+                        success: function(data) {
+                            alert('Sắp xếp thứ tự thành công');
+                        },
+                        error: function() {
+                            alert('Đã xảy ra lỗi khi sắp xếp');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>

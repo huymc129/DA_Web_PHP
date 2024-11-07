@@ -27,7 +27,7 @@ class MovieController extends Controller
         $genre = Genre :: pluck('title','id');
         $country = Country :: pluck('title','id');
         $list = Movie :: orderBy('id','DESC')->get();
-        return view('admincp.movie.form',compact('list','genre','country','category'));
+        return view('admin.movie.form',compact('list','genre','country','category'));
     }
 
     /**
