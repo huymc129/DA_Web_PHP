@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <a href="{{route('movie.create')}}" class="btn btn-primary">Thêm Phim</a>
+            <a href="{{route('detail.create')}}" class="btn btn-primary">Thêm sinh vat</a>
             <table class="table" id="tablephim">
                 <thead>
                     <tr>
@@ -36,7 +36,7 @@
                             <th scope="row">{{$key}}</th>
                             <td>{{$cate->title}}</td>
                             <td>{{$cate->thoiluong}}</td>
-                            <td><img width="60%" src="{{asset('uploads/movie/'.$cate->image)}}"></td>
+                            <td><img width="60%" src="{{asset('uploads/detail/'.$cate->image)}}"></td>
                             <td>
                                 @if($cate->phim_hot==0)
                                     Không
@@ -90,13 +90,13 @@
                             </td>
                             
                             <td>
-                                <form action="{{ route('movie.destroy', $cate->id) }}" method="POST"
+                                <form action="{{ route('detail.destroy', $cate->id) }}" method="POST"
                                     onsubmit="return confirm('Bạn có muốn xóa?')">
                                     @csrf
                                     @method('DELETE') <!-- Thêm hidden input để chỉ định phương thức DELETE -->
                                     <button type="submit" class="btn btn-danger">Xóa</button>
                                 </form>
-                                <a href={{ route('movie.edit', $cate->id) }} class="btn btn-warning">Sửa</a>
+                                <a href={{ route('detail.edit', $cate->id) }} class="btn btn-warning">Sửa</a>
 
                             </td>
                         </tr>

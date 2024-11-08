@@ -12,13 +12,13 @@
 
 
    <link rel="shortcut icon"
-      href="https://www.pngkey.com/png/detail/360-3601772_your-logo-here-your-company-logo-here-png.png"
+      href="public/imgs/logo HyDrex.jpg"
       type="image/x-icon" />
    <meta name="revisit-after" content="1 days" />
    <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
-   <title>Phim hay 2021 - Xem phim hay nhất</title>
+   <title>Phim hay HyDrex</title>
    <meta name="description"
-      content="Phim hay 2021 - Xem phim hay nhất, xem phim online miễn phí, phim hot , phim nhanh" />
+      content="Phim hay HyDrex" />
    <link rel="canonical" href="">
    <link rel="next" href="" />
    <meta property="og:locale" content="vi_VN" />
@@ -123,8 +123,8 @@
                         <a title="Thể Loại" href="#" data-toggle="dropdown" class="dropdown-toggle"
                            aria-haspopup="true">Thể Loại <span class="caret"></span></a>
                         <ul role="menu" class=" dropdown-menu">
-                        @foreach ($genre as $key=>$gen)
-                           <li><a title="{{$gen->title}}" href="{{route('genre',$gen->slug)}}">{{$gen->title}}</a></li>
+                        @foreach ($specie as $key=>$spe)
+                           <li><a title="{{$spe->title}}" href="{{route('specie',$spe->slug)}}">{{$spe->title}}</a></li>
                         @endforeach
                         </ul>
                      </li>
@@ -137,11 +137,21 @@
                         @endforeach
                         </ul>
                      </li>
+                     <li class="mega dropdown">
+                        <a title="Năm phim" href="#" data-toggle="dropdown" class="dropdown-toggle"
+                           aria-haspopup="true">Năm Phim <span class="caret"></span></a>
+                        <ul role="menu" class=" dropdown-menu">
+                        @for ($year = 1990; $year <= 2024; $year++)
+                           <li><a title="{{ $year }}" href="{{ url('nam/'.$year) }}">{{ $year }}</a></li>
+                       @endfor
+                       
+                        </ul>
+                     </li>
                     
                   </ul>
                </div>
                <ul class="nav navbar-nav navbar-left" style="background:#000;">
-                  <li><a href="#" onclick="locphim()" style="color: #ffed4d;">Lọc Phim</a></li>
+                  <li><a href="#" onclick="locphim()" style="color: #ffed4d;">Lọc Sinh Vật</a></li>
                </ul>
             </div>
          </nav>
@@ -168,7 +178,7 @@
             <div class="widget about col-xs-12 col-sm-4 col-md-4">
                <div class="footer-logo">
                   <img class="img-responsive"
-                     src="https://img.favpng.com/9/23/19/movie-logo-png-favpng-nRr1DmYq3SNYSLN8571CHQTEG.jpg"
+                     src="https://scontent.fdad3-6.fna.fbcdn.net/v/t39.30808-6/306278645_409899911269800_8764223491661501521_n.png?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHF6N8ad0VCNNckjhTJMr5BOxDJDGLI-AA7EMkMYsj4ALUvAqOBHt_eguh1pS3i2sGGaf0BTMRWWgmVhOBfTsts&_nc_ohc=v0jKxqBiqdgQ7kNvgGTBo34&_nc_zt=23&_nc_ht=scontent.fdad3-6.fna&_nc_gid=Af195XJUYsu9X8TLXMF9dxu&oh=00_AYDVrjVCr4RPlRX3HJl9gL3wfnodhpw0nKJz65VBdbuEzg&oe=673256B9"
                      alt="Phim hay 2021- Xem phim hay nhất" />
                </div>
                Liên hệ QC: <a href="/cdn-cgi/l/email-protection" class="__cf_email__"

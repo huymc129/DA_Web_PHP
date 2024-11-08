@@ -6,54 +6,37 @@
             <div class="ajax"></div>
         </div>
     </div>
-    {{-- <div class="col-xs-12 carausel-sliderWidget">
-        <section id="halim-advanced-widget-4">
-            <div class="section-heading">
-                <a href="danhmuc.php" title="Phim Chiếu Rạp">
-                    <span class="h-text">Phim Chiếu Rạp</span>
-                </a>
-                <ul class="heading-nav pull-right hidden-xs">
-                    <li class="section-btn halim_ajax_get_post" data-catid="4" data-showpost="12"
-                        data-widgetid="halim-advanced-widget-4" data-layout="6col"><span data-text="Chiếu Rạp"></span>
-                    </li>
-                </ul>
-            </div>
-            <div id="halim-advanced-widget-4-ajax-box" class="halim_box">
-                <article class="col-md-2 col-sm-4 col-xs-6 thumb grid-item post-38424">
-                    <div class="halim-item">
-                        <a class="halim-thumb" href="{{route('movie')}}" title="GÓA PHỤ ĐEN">
-                            <figure><img class="lazy img-responsive"
-                                    src="https://lumiere-a.akamaihd.net/v1/images/p_blackwidow_disneyplus_21043-1_63f71aa0.jpeg"
-                                    alt="GÓA PHỤ ĐEN" title="GÓA PHỤ ĐEN"></figure>
-                            <span class="status">HD</span><span class="episode"><i class="fa fa-play"
-                                    aria-hidden="true"></i>Vietsub</span>
-                            <div class="icon_overlay"></div>
-                            <div class="halim-post-title-box">
-                                <div class="halim-post-title ">
-                                    <p class="entry-title">GÓA PHỤ ĐEN</p>
-                                    <p class="original_title">Black Widow</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </article>
 
-
-            </div>
-        </section>
-        <div class="clearfix"></div>
-    </div> --}}
-    <div id="halim_related_movies-2xx" class="wrap-slider">
+    <div id="halim_related_details-2xx" class="wrap-slider">
         <div class="section-bar clearfix">
-           <h3 class="section-title"><span>Phim hot</span></h3>
+           <h3 class="section-title"><span>detail hot</span></h3>
         </div>
-        <div id="halim_related_movies-2" class="owl-carousel owl-theme related-film">
-            @foreach($phim_hot as $key => $hot)
+        <div id="halim_related_details-2" class="owl-carousel owl-theme related-film">
+            @foreach($detail_hot as $key => $hot)
                 <article class="thumb grid-item post-38498">
                     <div class="halim-item">
-                        <a class="halim-thumb" href="{{route('movie')}}" title="Đại Thánh Vô Song">
-                            <figure><img class="lazy img-responsive" src="{{ asset('uploads/movie/' . $hot->image) }}" title="{{($hot->title)}}"></figure>
-                            <span class="status">HD</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
+                        <a class="halim-thumb" href="{{route('detail',$hot->slug)}}" title="Đại Thánh Vô Song">
+                            <figure><img class="lazy img-responsive" src="{{ asset('uploads/detail/' . $hot->image) }}" title="{{($hot->title)}}"></figure>
+                            <span class="status">
+                                @if($hot->resolution==0)
+                                    SD
+                                @elseif($hot->resolution==1)
+                                    HD
+                                @elseif($hot->resolution==2)
+                                    HD+
+                                @else
+                                    Full HD
+                                @endif
+                            </span>
+                            <span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
+                                @if($hot->phiendich==0)
+                                    Vietsub
+                                @elseif($hot->phiendich==1)
+                                    Lồng tiếng
+                                @else
+                                    Thuyết Minh
+                                @endif
+                            </span> 
                             <div class="icon_overlay"></div>
                             <div class="halim-post-title-box">
                             <div class="halim-post-title ">
@@ -70,35 +53,53 @@
         </div>
         <script>
            jQuery(document).ready(function($) {				
-           var owl = $('#halim_related_movies-2');
+           var owl = $('#halim_related_details-2');
            owl.owlCarousel({
                 loop: true,margin: 5,autoplay: true,autoplayTimeout: 4000,autoplayHoverPause: true,nav: true,navText: 
-                ['<i class="hl-down-open rotate-left"></i>', '<i class="hl-down-open rotate-right"></i>'],responsiveClass: true,responsive: {0: {items:2},480: {items:3}, 600: {items:4},1000: {items: 5}}})});
+                ['<i class="hl-down-open rotate-left"></i>', '<i class="hl-down-open rotate-right"></i>'],responsiveClass: true,responsive: {0: {items:2},480: {items:3}, 600: {items:4},1000: {items: 6}}})});
         </script>
      </div>
     <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
         @foreach($category_home as $key => $cate_home)
             <section id="halim-advanced-widget-2">
                 <div class="section-heading">
-                    <a href="danhmuc.php" title="Phim Bộ">
+                    <a href="danhmuc.php" title="detail Bộ">
                         <span class="h-text">{{$cate_home->title}}</span>
                     </a>
                 </div>
                 <div id="halim-advanced-widget-2-ajax-box" class="halim_box">
-                @foreach($cate_home->movie->take(12) as $key => $mov)
+                @foreach($cate_home->detail->take(12) as $key => $det)
                     <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-37606">
                         <div class="halim-item">
-                            <a class="halim-thumb" href="{{route('movie')}}">
+                            <a class="halim-thumb" href="{{route('detail',$det->slug)}}">
                                 <figur>
-                                        <img class="lazy img-responsive" src="{{ asset('uploads/movie/' . $mov->image) }}"
-                                        src="{{asset('uploads/movie/.$mov->image')}}" title="{{($mov->title)}}">
+                                        <img class="lazy img-responsive" src="{{ asset('uploads/detail/' . $det->image) }}"
+                                        src="{{asset('uploads/detail/.$det->image')}}" title="{{($det->title)}}">
                                 </figure>
-                                <span class="status">TẬP 15</span><span class="episode"><i class="fa fa-play"
-                                        aria-hidden="true"></i>Vietsub</span>
+                                <span class="status">
+                                    @if($det->resolution==0)
+                                        SD
+                                    @elseif($det->resolution==1)
+                                        HD
+                                    @elseif($det->resolution==2)
+                                        HD+
+                                    @else
+                                        Full HD
+                                    @endif
+                                </span>
+                                    <span class="episode"><i class="fa fa-play"aria-hidden="true"></i>
+                                        @if($det->phiendich==0)
+                                            Vietsub
+                                        @elseif($det->phiendich==1)
+                                            Lồng tiếng
+                                        @else
+                                            Thuyết Minh
+                                        @endif
+                                    </span>
                                 <div class="icon_overlay"></div>
                                 <div class="halim-post-title-box">
                                     <div class="halim-post-title ">
-                                        <p class="entry-title">{{($mov->title)}}</p>
+                                        <p class="entry-title">{{($det->title)}}</p>
                                         <p class="original_title">{{($hot->name_eng)}}</p>
                                     </div>
                                 </div>
@@ -142,7 +143,7 @@
                         <div class="item post-37176">
                             <a href="chitiet.php" title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ">
                                 <div class="item-link">
-                                    <img src="https://ghienphim.org/uploads/GPax0JpZbqvIVyfkmDwhRCKATNtLloFQ.jpeg?v=1624801798"
+                                    <img src="https://ghiendetail.org/uploads/GPax0JpZbqvIVyfkmDwhRCKATNtLloFQ.jpeg?v=1624801798"
                                         class="lazy post-thumb" alt="CHỊ MƯỜI BA: BA NGÀY SINH TỬ"
                                         title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ" />
                                     <span class="is_trailer">Trailer</span>
@@ -160,7 +161,7 @@
                         <div class="item post-37176">
                             <a href="chitiet.php" title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ">
                                 <div class="item-link">
-                                    <img src="https://ghienphim.org/uploads/GPax0JpZbqvIVyfkmDwhRCKATNtLloFQ.jpeg?v=1624801798"
+                                    <img src="https://ghiendetail.org/uploads/GPax0JpZbqvIVyfkmDwhRCKATNtLloFQ.jpeg?v=1624801798"
                                         class="lazy post-thumb" alt="CHỊ MƯỜI BA: BA NGÀY SINH TỬ"
                                         title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ" />
                                     <span class="is_trailer">Trailer</span>
@@ -178,7 +179,7 @@
                         <div class="item post-37176">
                             <a href="chitiet.php" title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ">
                                 <div class="item-link">
-                                    <img src="https://ghienphim.org/uploads/GPax0JpZbqvIVyfkmDwhRCKATNtLloFQ.jpeg?v=1624801798"
+                                    <img src="https://ghiendetail.org/uploads/GPax0JpZbqvIVyfkmDwhRCKATNtLloFQ.jpeg?v=1624801798"
                                         class="lazy post-thumb" alt="CHỊ MƯỜI BA: BA NGÀY SINH TỬ"
                                         title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ" />
                                     <span class="is_trailer">Trailer</span>
@@ -196,7 +197,7 @@
                         <div class="item post-37176">
                             <a href="chitiet.php" title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ">
                                 <div class="item-link">
-                                    <img src="https://ghienphim.org/uploads/GPax0JpZbqvIVyfkmDwhRCKATNtLloFQ.jpeg?v=1624801798"
+                                    <img src="https://ghiendetail.org/uploads/GPax0JpZbqvIVyfkmDwhRCKATNtLloFQ.jpeg?v=1624801798"
                                         class="lazy post-thumb" alt="CHỊ MƯỜI BA: BA NGÀY SINH TỬ"
                                         title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ" />
                                     <span class="is_trailer">Trailer</span>
@@ -214,7 +215,7 @@
                         <div class="item post-37176">
                             <a href="chitiet.php" title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ">
                                 <div class="item-link">
-                                    <img src="https://ghienphim.org/uploads/GPax0JpZbqvIVyfkmDwhRCKATNtLloFQ.jpeg?v=1624801798"
+                                    <img src="https://ghiendetail.org/uploads/GPax0JpZbqvIVyfkmDwhRCKATNtLloFQ.jpeg?v=1624801798"
                                         class="lazy post-thumb" alt="CHỊ MƯỜI BA: BA NGÀY SINH TỬ"
                                         title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ" />
                                     <span class="is_trailer">Trailer</span>
@@ -232,7 +233,7 @@
                         <div class="item post-37176">
                             <a href="chitiet.php" title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ">
                                 <div class="item-link">
-                                    <img src="https://ghienphim.org/uploads/GPax0JpZbqvIVyfkmDwhRCKATNtLloFQ.jpeg?v=1624801798"
+                                    <img src="https://ghiendetail.org/uploads/GPax0JpZbqvIVyfkmDwhRCKATNtLloFQ.jpeg?v=1624801798"
                                         class="lazy post-thumb" alt="CHỊ MƯỜI BA: BA NGÀY SINH TỬ"
                                         title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ" />
                                     <span class="is_trailer">Trailer</span>
@@ -250,7 +251,7 @@
                         <div class="item post-37176">
                             <a href="chitiet.php" title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ">
                                 <div class="item-link">
-                                    <img src="https://ghienphim.org/uploads/GPax0JpZbqvIVyfkmDwhRCKATNtLloFQ.jpeg?v=1624801798"
+                                    <img src="https://ghiendetail.org/uploads/GPax0JpZbqvIVyfkmDwhRCKATNtLloFQ.jpeg?v=1624801798"
                                         class="lazy post-thumb" alt="CHỊ MƯỜI BA: BA NGÀY SINH TỬ"
                                         title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ" />
                                     <span class="is_trailer">Trailer</span>

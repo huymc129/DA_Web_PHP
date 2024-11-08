@@ -21,8 +21,9 @@ class CategoryController extends Controller
     public function create()
     {
         $list=Category :: orderBy('position','ASC')->get();
-        return view('admin.category.form',compact('list'));
+        return view('admincp.category.form',compact('list'));
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -53,8 +54,8 @@ class CategoryController extends Controller
     public function edit(string $id)
     {
         $category = Category::find($id);
-        $list=Category :: orderBy('position','ASC')->get();
-        return view('admin.category.form', compact('list', 'category')); // Sửa lại ở đây
+        $list = Category::orderBy('position', 'ASC')->paginate(10); // Thay get() bằng paginate(10)
+        return view('admincp.category.form', compact('list', 'category'));
     }
     
 

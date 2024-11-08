@@ -6,6 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Quản lý danh mục') }}</div>
+                
 
                 <div class="card-body">
                     @if (session('status'))

@@ -20,21 +20,39 @@
                     <h1 class="section-title"><span>{{ $country_slug->title }}</span></h1>
                 </div>
                 <div class="halim_box">
-                    @foreach ($movie as $key => $mov)
+                    @foreach ($detail as $key => $det)
                         <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-37606">
                             <div class="halim-item">
-                                <a class="halim-thumb" href="{{route('movie')}}">
+                                <a class="halim-thumb" href="{{ route('detail', $det->slug) }}">
                                     <figur>
-                                        <img class="lazy img-responsive" src="{{ asset('uploads/movie/' . $mov->image) }}"
-                                            src="{{ asset('uploads/movie/.$mov->image') }}" title="{{ $mov->title }}">
+                                        <img class="lazy img-responsive" src="{{ asset('uploads/detail/' . $det->image) }}"
+                                            src="{{ asset('uploads/detail/.$det->image') }}" title="{{ $det->title }}">
                                         </figure>
-                                        <span class="status">TẬP 15</span><span class="episode"><i class="fa fa-play"
-                                                aria-hidden="true"></i>Vietsub</span>
+                                        <span class="status">
+                                            @if ($det->resolution == 0)
+                                                SD
+                                            @elseif($det->resolution == 1)
+                                                HD
+                                            @elseif($det->resolution == 2)
+                                                HD+
+                                            @else
+                                                Full HD
+                                            @endif
+                                        </span>
+                                        <span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
+                                            @if ($det->phiendich == 0)
+                                                Vietsub
+                                            @elseif($det->phiendich == 1)
+                                                Lồng tiếng
+                                            @else
+                                                Thuyết Minh
+                                            @endif
+                                        </span>
                                         <div class="icon_overlay"></div>
                                         <div class="halim-post-title-box">
                                             <div class="halim-post-title ">
-                                                <p class="entry-title">{{ $mov->title }}</p>
-                                                <p class="original_title">{{ $mov->name_eng }}</p>
+                                                <p class="entry-title">{{ $det->title }}</p>
+                                                <p class="original_title">{{ $det->name_eng }}</p>
                                             </div>
                                         </div>
                                 </a>
@@ -53,7 +71,7 @@
                         <li><a class="page-numbers" href="">55</a></li>
                         <li><a class="next page-numbers" href=""><i class="hl-down-open rotate-right"></i></a></li>
                     </ul> --}}
-                    {!! $movie->links("pagination::bootstrap-5") !!}
+                    {!! $detail->links('pagination::bootstrap-5') !!}
                 </div>
             </section>
         </main>
