@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <a href="{{route('detail.index')}}" class="btn btn-primary">Liệt Kê Sinh Vật</a>
-                <div class="card-header">{{ __('Quản lý creature') }}</div>
+                <div class="card-header">{{ __('Quản lý detail') }}</div>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -27,7 +27,7 @@
                                     onkeyup="ChangeToSlug()">
                             </div>
                             <div class="form-group">
-                                <label for="thoiluong" class="form-label">Thời lượng creature</label>
+                                <label for="thoiluong" class="form-label">Tuổi thọ trung bình</label>
                                 <input type="text" name="thoiluong" value="{{ isset($detail) ? $detail->thoiluong : '' }}"
                                     class="form-control" placeholder="Nhập dữ liệu">
                             </div>
@@ -55,20 +55,19 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="resolution">Resolution</label>
+                                <label for="resolution">Tập tính</label>
                                 <select name="resolution" class="form-control" style="width: 100%;">
-                                    <option value="0" {{ old('resolution', isset($detail) ? $detail->resolution : null) == '0' ? 'selected' : '' }}>SD</option>
-                                    <option value="1" {{ old('resolution', isset($detail) ? $detail->resolution : null) == '1' ? 'selected' : '' }}>HD</option>
-                                    <option value="2" {{ old('resolution', isset($detail) ? $detail->resolution : null) == '2' ? 'selected' : '' }}>HD+</option>
-                                    <option value="3" {{ old('resolution', isset($detail) ? $detail->resolution : null) == '3' ? 'selected' : '' }}>Full HD</option>
+                                    <option value="0" {{ old('resolution', isset($detail) ? $detail->resolution : null) == '0' ? 'selected' : '' }}>social-Sống bầy đàn</option>
+                                    <option value="1" {{ old('resolution', isset($detail) ? $detail->resolution : null) == '1' ? 'selected' : '' }}>solitary-Sống đơn độc</option>
+                                    <option value="2" {{ old('resolution', isset($detail) ? $detail->resolution : null) == '2' ? 'selected' : '' }}>parasitic-Sống ký sinh</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="phiendich">Định dạng</label>
+                                <label for="phiendich">Sinh vật này ở Châu Lục nào</label>
                                 <select name="phiendich" class="form-control" style="width: 100%;">
-                                    <option value="0" {{ old('phiendich', isset($detail) ? $detail->phiendich : null) == '0' ? 'selected' : '' }}>Vietsub</option>
-                                    <option value="1" {{ old('phiendich', isset($detail) ? $detail->phiendich : null) == '1' ? 'selected' : '' }}>Lồng Tiếng</option>
-                                    <option value="2" {{ old('phiendich', isset($detail) ? $detail->phiendich : null) == '2' ? 'selected' : '' }}>Thuyết Minh</option>
+                                    <option value="0" {{ old('phiendich', isset($detail) ? $detail->phiendich : null) == '0' ? 'selected' : '' }}>everywhere</option>
+                                    <option value="1" {{ old('phiendich', isset($detail) ? $detail->phiendich : null) == '1' ? 'selected' : '' }}>Asia </option>
+                                    <option value="2" {{ old('phiendich', isset($detail) ? $detail->phiendich : null) == '2' ? 'selected' : '' }}>Europe</option>
                                 </select>
                             </div>
                             
@@ -85,11 +84,11 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="country">Country</label>
-                                <select name="country_id" class="form-control" id="country">
-                                    <option value="">--Chọn quốc gia--</option>
-                                    @foreach ($country as $id => $title)
-                                        <option value="{{ $id }}" {{ isset($detail) && $detail->country_id == $id ? 'selected' : '' }}>
+                                <label for="location">Location</label>
+                                <select name="location_id" class="form-control" id="location">
+                                    <option value="">--Chọn địa điểm sống--</option>
+                                    @foreach ($location as $id => $title)
+                                        <option value="{{ $id }}" {{ isset($detail) && $detail->location_id == $id ? 'selected' : '' }}>
                                             {{ $title }}
                                         </option>
                                     @endforeach
@@ -97,9 +96,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="specie">specie</label>
+                                <label for="specie">Specie</label>
                                 <select name="specie_id" class="form-control" id="specie">
-                                    <option value="">--Chọn thể loại--</option>
+                                    <option value="">--Chọn loài--</option>
                                     @foreach ($specie as $id => $title)
                                         <option value="{{ $id }}" {{ isset($detail) && $detail->specie_id == $id ? 'selected' : '' }}>
                                             {{ $title }}
@@ -109,11 +108,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="Hot">Hot</label>
-                                <select name="creature_hot" class="form-control" id="creature_hot">
-                                    <option value="">--Chọn thể loại--</option>
-                                    <option value="1" {{ old('status', isset($detail) ? $detail->creature_hot : null) == '1' ? 'selected' : '' }}>Có</option>
-                                    <option value="0" {{ old('status', isset($detail) ? $detail->creature_hot : null) == '0' ? 'selected' : '' }}>Không</option>
+                                <select name="detail_hot" class="form-control" id="detail_hot">
+                                    <option value="">--Chọn độ hot--</option>
+                                    <option value="1" {{ old('detail_hot', isset($detail) ? $detail->detail_hot : null) == '1' ? 'selected' : '' }}>Có</option>
+                                    <option value="0" {{ old('detail_hot', isset($detail) ? $detail->detail_hot : null) == '0' ? 'selected' : '' }}>Không</option>
                                 </select>
+                                
                             </div>
 
 

@@ -9,7 +9,7 @@
                                         href="{{ route('category', $detail->category->slug) }}">{{ $detail->category->title }}</a>
                                     » <span>
                                         <a
-                                            href="{{ route('country', $detail->country->slug) }}">{{ $detail->country->title }}</a>
+                                            href="{{ route('location', $detail->location->slug) }}">{{ $detail->location->title }}</a>
                                         » <span class="breadcrumb_last"
                                             aria-current="page">{{ $detail->title }}</span></span></span></span></div>
                     </div>
@@ -38,7 +38,7 @@
                                     alt="GÓA PHỤ ĐEN">
                                 <div class="bwa-content">
                                     <div class="loader"></div>
-                                    <a href="{{ route('watch') }}" class="bwac-btn">
+                                    <a href="{{ route('detail') }}" class="bwac-btn">
                                         <i class="fa fa-play"></i>
                                     </a>
                                 </div>
@@ -83,8 +83,8 @@
                                             rel="category tag">{{ $detail->category->title }}</a>,
                                     </li>
                                     <li class="list-info-group-item"><span>Quốc gia</span> :
-                                        <a href="{{ route('country', $detail->country->slug) }}"
-                                            rel="country tag">{{ $detail->country->title }}</a>
+                                        <a href="{{ route('location', $detail->location->slug) }}"
+                                            rel="location tag">{{ $detail->location->title }}</a>
                                     </li>
                                     {{-- <li class="list-info-group-item"><span>Đạo diễn</span> : 
                                     <a class="director" rel="nofollow" href="https://phimhay.co/dao-dien/cate-shortland" title="Cate Shortland">Cate Shortland</a></li>

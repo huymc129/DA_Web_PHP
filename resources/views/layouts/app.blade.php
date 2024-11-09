@@ -90,7 +90,7 @@
     <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
     <script type="text/javascript" src="//cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
     <script type="text/javascript">
-    let table = new DataTable('#tablephim');
+    let table = new DataTable('#tabledetail');
  
     function ChangeToSlug()
         {

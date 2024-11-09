@@ -5,7 +5,7 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6">
-                        <div class="yoast_breadcrumb hidden-xs"><span><span><a href="">{{ $country_slug->title }}</a> »
+                        <div class="yoast_breadcrumb hidden-xs"><span><span><a href="">{{ $location_slug->title }}</a> »
                                     <span class="breadcrumb_last" aria-current="page">2020</span></span></span></div>
                     </div>
                 </div>
@@ -17,7 +17,7 @@
         <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
             <section>
                 <div class="section-bar clearfix">
-                    <h1 class="section-title"><span>{{ $country_slug->title }}</span></h1>
+                    <h1 class="section-title"><span>{{ $location_slug->title }}</span></h1>
                 </div>
                 <div class="halim_box">
                     @foreach ($detail as $key => $det)
@@ -75,7 +75,7 @@
                 </div>
             </section>
         </main>
-        <aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4">
+        {{-- <aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4">
             <div id="halim_tab_popular_videos-widget-7" class="widget halim_tab_popular_videos-widget">
                 <div class="section-bar clearfix">
                     <div class="section-title">
@@ -237,6 +237,6 @@
                 </section>
                 <div class="clearfix"></div>
             </div>
-        </aside>
+        </aside> --}}
     </div>
 @endsection

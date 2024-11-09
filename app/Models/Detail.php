@@ -14,9 +14,9 @@ class Detail extends Model
         return $this->belongsTo(Category::class, 'category_id');
     }
 
-    public function country()
+    public function location()
     {
-        return $this->belongsTo(Country::class, 'country_id');
+        return $this->belongsTo(Location::class, 'location_id');
     }   
 
     public function specie()

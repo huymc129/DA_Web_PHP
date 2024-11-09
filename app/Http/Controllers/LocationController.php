@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Country;
+use App\Models\Location;
 
-class CountryController extends Controller
+class LocationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,8 +20,8 @@ class CountryController extends Controller
      */
     public function create()
     {
-        $list = Country::all();
-        return view('admincp.country.form',compact('list'));
+        $list = Location::all();
+        return view('admincp.location.form',compact('list'));
     }
 
     /**
@@ -30,12 +30,12 @@ class CountryController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $country = new Country();
-        $country->title=$data['title'];
-        $country->slug=$data['slug'];
-        $country->description=$data['description'];
-        $country->status=$data['status'];
-        $country->save();
+        $location = new location();
+        $location->title=$data['title'];
+        $location->slug=$data['slug'];
+        $location->description=$data['description'];
+        $location->status=$data['status'];
+        $location->save();
         return redirect()->back();
     }
 
@@ -52,9 +52,9 @@ class CountryController extends Controller
      */
     public function edit(string $id)
     {
-        $country = Country::find($id);
-        $list = Country::all();
-        return view('admincp.country.form', compact('list', 'country')); // Sửa lại ở đây
+        $location = Location::find($id);
+        $list = Location::all();
+        return view('admincp.location.form', compact('list', 'location')); // Sửa lại ở đây
     }
     
 
@@ -64,12 +64,12 @@ class CountryController extends Controller
     public function update(Request $request, string $id)
     {
         $data = $request->all();
-        $country = Country::find($id);
-        $country->title=$data['title'];
-        $country->slug=$data['slug'];
-        $country->description=$data['description'];
-        $country->status=$data['status'];
-        $country->save();
+        $location = Location::find($id);
+        $location->title=$data['title'];
+        $location->slug=$data['slug'];
+        $location->description=$data['description'];
+        $location->status=$data['status'];
+        $location->save();
         return redirect()->back();
     
     }
@@ -79,7 +79,7 @@ class CountryController extends Controller
      */
     public function destroy(string $id)
     {
-        Country::find($id)->delete();
+        Location::find($id)->delete();
         return redirect()->back();
     }
 }

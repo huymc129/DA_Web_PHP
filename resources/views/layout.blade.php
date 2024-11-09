@@ -105,7 +105,7 @@
                   Bookmarks<i class="hl-bookmark" aria-hidden="true"></i>
                   <span class="count">0</span>
                </button>
-               <button type="button" class="navbar-toggle collapsed pull-right get-locphim-on-mobile">
+               <button type="button" class="navbar-toggle collapsed pull-right get-locsinhvat-on-mobile">
                   <a href="javascript:;" id="expand-ajax-filter" style="color: #ffed4d;">Lọc <i
                         class="fas fa-filter"></i></a>
                </button>
@@ -129,17 +129,17 @@
                         </ul>
                      </li>
                      <li class="mega dropdown">
-                        <a title="Quốc Gia" href="#" data-toggle="dropdown" class="dropdown-toggle"
-                           aria-haspopup="true">Quốc Gia <span class="caret"></span></a>
+                        <a title="Location" href="#" data-toggle="dropdown" class="dropdown-toggle"
+                           aria-haspopup="true">Nơi sinh sống <span class="caret"></span></a>
                         <ul role="menu" class=" dropdown-menu">
-                        @foreach ($country as $key=>$count)
-                           <li><a title="{{$count->title}}" href="{{route('country',$count->slug)}}">{{$count->title}}</a></li>
+                        @foreach ($location as $key=>$count)
+                           <li><a title="{{$count->title}}" href="{{route('location',$count->slug)}}">{{$count->title}}</a></li>
                         @endforeach
                         </ul>
                      </li>
                      <li class="mega dropdown">
-                        <a title="Năm phim" href="#" data-toggle="dropdown" class="dropdown-toggle"
-                           aria-haspopup="true">Năm Phim <span class="caret"></span></a>
+                        <a title="Năm phát hiện" href="#" data-toggle="dropdown" class="dropdown-toggle"
+                           aria-haspopup="true">Năm  <span class="caret"></span></a>
                         <ul role="menu" class=" dropdown-menu">
                         @for ($year = 1990; $year <= 2024; $year++)
                            <li><a title="{{ $year }}" href="{{ url('nam/'.$year) }}">{{ $year }}</a></li>
@@ -151,7 +151,7 @@
                   </ul>
                </div>
                <ul class="nav navbar-nav navbar-left" style="background:#000;">
-                  <li><a href="#" onclick="locphim()" style="color: #ffed4d;">Lọc Sinh Vật</a></li>
+                  <li><a href="#" onclick="locsinhvat()" style="color: #ffed4d;">Lọc Sinh Vật</a></li>
                </ul>
             </div>
          </nav>

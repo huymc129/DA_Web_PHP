@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Detail;
 use App\Models\Category;
 use App\Models\Specie;
-use App\Models\Country;
+use App\Models\Location;
 use Carbon\Carbon;
 
 class DetailController extends Controller
@@ -16,7 +16,7 @@ class DetailController extends Controller
      */
     public function index()
     {
-        $list = Detail :: with('category','specie','country')->orderBy('id','DESC')->get();
+        $list = Detail :: with('category','specie','location')->orderBy('id','DESC')->get();
         return view('admincp.detail.index',compact('list'));
     }
     public function update_year(Request $request){
@@ -32,10 +32,10 @@ class DetailController extends Controller
     {
         $category = Category :: pluck('title','id');
         $specie = Specie :: pluck('title','id');
-        $country = Country :: pluck('title','id');
-        $list = Detail :: with('category','specie','country')->orderBy('id','DESC')->get();
+        $location = Location :: pluck('title','id');
+        $list = Detail :: with('category','specie','location')->orderBy('id','DESC')->get();
        
-        return view('admincpcp.detail.form',compact('specie','country','category'));
+        return view('admincp.detail.form',compact('specie','location','category'));
     }
 
     /**
@@ -57,7 +57,7 @@ class DetailController extends Controller
         $detail->status = $data['status'];
         $detail->category_id = $data['category_id'];
         $detail->specie_id = $data['specie_id'];
-        $detail->country_id = $data['country_id'];
+        $detail->location_id = $data['location_id'];
         $detail->ngaytao = Carbon :: now('Asia/Ho_Chi_Minh');
         $detail->ngaycapnhat = Carbon :: now('Asia/Ho_Chi_Minh');
         
@@ -97,9 +97,9 @@ class DetailController extends Controller
     {
         $category = Category::pluck('title','id');
         $specie = Specie::pluck('title','id');
-        $country = Country::pluck('title','id');
+        $location = Location::pluck('title','id');
         $detail = Detail::find($id);
-        return view('admincp.detail.form', compact( 'specie', 'category', 'country','detail'));
+        return view('admincp.detail.form', compact( 'specie', 'category', 'location','detail'));
     }
 
     /**
@@ -121,7 +121,7 @@ class DetailController extends Controller
         $detail->status = $data['status'];
         $detail->category_id = $data['category_id'];
         $detail->specie_id = $data['specie_id'];
-        $detail->country_id = $data['country_id'];
+        $detail->location_id = $data['location_id'];
         $detail->ngaycapnhat = Carbon :: now('Asia/Ho_Chi_Minh');
         
         $get_image = $request->file('image');

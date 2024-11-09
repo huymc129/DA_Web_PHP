@@ -9,13 +9,13 @@
 
     <div id="halim_related_details-2xx" class="wrap-slider">
         <div class="section-bar clearfix">
-           <h3 class="section-title"><span>detail hot</span></h3>
+           <h3 class="section-title"><span>Sinh vật hot</span></h3>
         </div>
         <div id="halim_related_details-2" class="owl-carousel owl-theme related-film">
             @foreach($detail_hot as $key => $hot)
                 <article class="thumb grid-item post-38498">
                     <div class="halim-item">
-                        <a class="halim-thumb" href="{{route('detail',$hot->slug)}}" title="Đại Thánh Vô Song">
+                        <a class="halim-thumb" href="{{route('detail',$hot->slug)}}" title="sinh vật">
                             <figure><img class="lazy img-responsive" src="{{ asset('uploads/detail/' . $hot->image) }}" title="{{($hot->title)}}"></figure>
                             <span class="status">
                                 @if($hot->resolution==0)
@@ -112,7 +112,7 @@
             <div class="clearfix"></div>
         @endforeach
     </main>
-    <aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4">
+    {{-- <aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4">
         <div id="halim_tab_popular_videos-widget-7" class="widget halim_tab_popular_videos-widget">
             <div class="section-bar clearfix">
                 <div class="section-title">
@@ -273,6 +273,6 @@
             </section>
             <div class="clearfix"></div>
         </div>
-    </aside>
+    </aside> --}}
 </div>
 @endsection
