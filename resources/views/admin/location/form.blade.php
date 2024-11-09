@@ -13,35 +13,35 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    @if (!isset($country))
-                        <form action="{{ route('country.store') }}" method="POST">
+                    @if (!isset($location))
+                        <form action="{{ route('location.store') }}" method="POST">
                     @else
-                        <form action="{{ route('country.update', $country->id) }}" method="POST">
+                        <form action="{{ route('location.update', $location->id) }}" method="POST">
                             @method('PUT') <!-- Thêm phương thức PUT -->
                     @endif
                             @csrf
                             <div class="form-group">
                                 <label for="title" class="form-label">Title</label>
-                                <input type="text" name="title" value="{{ isset($country) ? $country->title : '' }}"
+                                <input type="text" name="title" value="{{ isset($location) ? $location->title : '' }}"
                                     class="form-control" placeholder="Nhập dữ liệu" id="slug", onkeyup="ChangeToSlug()">
                             </div>
                             <div class="form-group">
                                 <label for="slug" class="form-label">Slug</label>
-                                <input type="text" name="slug" value="{{ isset($country) ? $country->slug : '' }}"
+                                <input type="text" name="slug" value="{{ isset($location) ? $location->slug : '' }}"
                                     class="form-control" placeholder="Nhập dữ liệu" id="convert_slug">
                             </div>
                             <div class="form-group">
                                 <label for="description" class="form-label">Description</label>
-                                <textarea name="description" class="form-control" placeholder="Nhập dữ liệu" id="description" style="resize: none;">{{isset($country) ? $country->description :''}}</textarea>
+                                <textarea name="description" class="form-control" placeholder="Nhập dữ liệu" id="description" style="resize: none;">{{isset($location) ? $location->description :''}}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="Active" class="form-label">Active</label>
                                 <select name="status" class="form-control" style="width: 100%;">
-                                    <option value="1" {{ old('status', isset($country) ? $country->status : null) == '1' ? 'selected' : '' }}>Hiển thị</option>
-                                    <option value="0" {{ old('status', isset($country) ? $country->status : null) == '0' ? 'selected' : '' }}>Không hiển thị</option>
+                                    <option value="1" {{ old('status', isset($location) ? $location->status : null) == '1' ? 'selected' : '' }}>Hiển thị</option>
+                                    <option value="0" {{ old('status', isset($location) ? $location->status : null) == '0' ? 'selected' : '' }}>Không hiển thị</option>
                                 </select>
                             </div>
-                        @if (!isset($country))
+                        @if (!isset($location))
                             <button type="submit" class="btn btn-success">Thêm dữ liệu</button>
                         @else
                             <button type="submit" class="btn btn-success">Cập nhật</button>
@@ -76,13 +76,13 @@
                                 @endif
                             </td>
                             <td>
-                                <form action="{{ route('country.destroy', $cate->id) }}" method="POST"
+                                <form action="{{ route('location.destroy', $cate->id) }}" method="POST"
                                     onsubmit="return confirm('Bạn có muốn xóa?')">
                                     @csrf
                                     @method('DELETE') <!-- Thêm hidden input để chỉ định phương thức DELETE -->
                                     <button type="submit" class="btn btn-danger">Xóa</button>
                                 </form>
-                                <a href={{ route('country.edit', $cate->id) }} class="btn btn-warning">Sửa</a>
+                                <a href={{ route('location.edit', $cate->id) }} class="btn btn-warning">Sửa</a>
 
                             </td>
                         </tr>

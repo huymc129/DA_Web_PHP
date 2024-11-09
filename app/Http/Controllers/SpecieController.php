@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Country;
-
-class CountryController extends Controller
+use App\Models\Specie;
+class SpecieController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,8 +19,8 @@ class CountryController extends Controller
      */
     public function create()
     {
-        $list = Country::all();
-        return view('admin.country.form',compact('list'));
+        $list = Specie::all();
+        return view('admin.specie.form',compact('list'));
     }
 
     /**
@@ -30,12 +29,12 @@ class CountryController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $country = new Country();
-        $country->title=$data['title'];
-        $country->slug=$data['slug'];
-        $country->description=$data['description'];
-        $country->status=$data['status'];
-        $country->save();
+        $specie = new specie();
+        $specie->title=$data['title'];
+        $specie->slug=$data['slug'];
+        $specie->description=$data['description'];
+        $specie->status=$data['status'];
+        $specie->save();
         return redirect()->back();
     }
 
@@ -52,9 +51,9 @@ class CountryController extends Controller
      */
     public function edit(string $id)
     {
-        $country = Country::find($id);
-        $list = Country::all();
-        return view('admin.country.form', compact('list', 'country')); // Sửa lại ở đây
+        $specie = Specie::find($id);
+        $list = Specie::all();
+        return view('admin.specie.form', compact('list', 'specie')); // Sửa lại ở đây
     }
     
 
@@ -64,12 +63,12 @@ class CountryController extends Controller
     public function update(Request $request, string $id)
     {
         $data = $request->all();
-        $country = Country::find($id);
-        $country->title=$data['title'];
-        $country->slug=$data['slug'];
-        $country->description=$data['description'];
-        $country->status=$data['status'];
-        $country->save();
+        $specie = Specie::find($id);
+        $specie->title=$data['title'];
+        $specie->slug=$data['slug'];
+        $specie->description=$data['description'];
+        $specie->status=$data['status'];
+        $specie->save();
         return redirect()->back();
     
     }
@@ -79,7 +78,7 @@ class CountryController extends Controller
      */
     public function destroy(string $id)
     {
-        Country::find($id)->delete();
+        Specie::find($id)->delete();
         return redirect()->back();
     }
 }

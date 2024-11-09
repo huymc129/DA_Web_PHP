@@ -8,20 +8,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{{route('category.create')}}">Danh mục phim</a>
+                <a class="nav-link" href="{{route('category.create')}}">Danh mục sinh vật</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('genre.create')}}">Thể Loại</a>
+                <a class="nav-link" href="{{route('specie.create')}}">Loài</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{route('country.create')}}">Quốc gia</a>
+                <a class="nav-link" href="{{route('location.create')}}">Địa điểm sống</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('movie.create')}}">Phim</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('episode.create')}}">tập phim</a>
+                <a class="nav-link" href="{{route('detail.create')}}">Sinh vật</a>
             </li>
 
             <!-- <li class="nav-item dropdown">

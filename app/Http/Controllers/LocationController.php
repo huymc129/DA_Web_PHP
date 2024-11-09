@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Genre;
-class GenreController extends Controller
+use App\Models\Location;
+
+class LocationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +20,8 @@ class GenreController extends Controller
      */
     public function create()
     {
-        $list = Genre::all();
-        return view('admin.genre.form',compact('list'));
+        $list = Location::all();
+        return view('admin.location.form',compact('list'));
     }
 
     /**
@@ -29,12 +30,12 @@ class GenreController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $genre = new Genre();
-        $genre->title=$data['title'];
-        $genre->slug=$data['slug'];
-        $genre->description=$data['description'];
-        $genre->status=$data['status'];
-        $genre->save();
+        $location = new Location();
+        $location->title=$data['title'];
+        $location->slug=$data['slug'];
+        $location->description=$data['description'];
+        $location->status=$data['status'];
+        $location->save();
         return redirect()->back();
     }
 
@@ -51,9 +52,9 @@ class GenreController extends Controller
      */
     public function edit(string $id)
     {
-        $genre = Genre::find($id);
-        $list = Genre::all();
-        return view('admin.genre.form', compact('list', 'genre')); // Sửa lại ở đây
+        $location = Location::find($id);
+        $list = Location::all();
+        return view('admin.location.form', compact('list', 'location')); // Sửa lại ở đây
     }
     
 
@@ -63,12 +64,12 @@ class GenreController extends Controller
     public function update(Request $request, string $id)
     {
         $data = $request->all();
-        $genre = Genre::find($id);
-        $genre->title=$data['title'];
-        $genre->slug=$data['slug'];
-        $genre->description=$data['description'];
-        $genre->status=$data['status'];
-        $genre->save();
+        $location = Location::find($id);
+        $location->title=$data['title'];
+        $location->slug=$data['slug'];
+        $location->description=$data['description'];
+        $location->status=$data['status'];
+        $location->save();
         return redirect()->back();
     
     }
@@ -78,7 +79,7 @@ class GenreController extends Controller
      */
     public function destroy(string $id)
     {
-        Genre::find($id)->delete();
+        location::find($id)->delete();
         return redirect()->back();
     }
 }

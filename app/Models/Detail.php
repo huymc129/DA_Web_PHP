@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Movie extends Model
+class Detail extends Model
 {
     public $timestamps = false;
     use HasFactory;
@@ -14,13 +14,13 @@ class Movie extends Model
         return $this->belongsTo(Category::class, 'category_id');
     }
 
-    public function country()
+    public function location()
     {
-        return $this->belongsTo(Country::class, 'country_id');
+        return $this->belongsTo(Location::class, 'location_id');
     }   
 
-    public function genre()
+    public function specie()
     {
-        return $this->belongsTo(Genre::class, 'genre_id');
+        return $this->belongsTo(Specie::class, 'specie_id');
     }
     }
