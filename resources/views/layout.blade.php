@@ -14,22 +14,9 @@
    <link rel="shortcut icon"
       href="public/imgs/logo HyDrex.jpg"
       type="image/x-icon" />
-   <meta name="revisit-after" content="1 days" />
-   <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
-   <title>Phim hay HyDrex</title>
-   <meta name="description"
-      content="Phim hay HyDrex" />
-   <link rel="canonical" href="">
-   <link rel="next" href="" />
-   <meta property="og:locale" content="vi_VN" />
-   <meta property="og:title" content="Phim hay 2020 - Xem phim hay nhất" />
-   <meta property="og:description"
-      content="Phim hay 2020 - Xem phim hay nhất, phim hay trung quốc, hàn quốc, việt nam, mỹ, hong kong , chiếu rạp" />
-   <meta property="og:url" content="" />
-   <meta property="og:site_name" content="Phim hay 2021- Xem phim hay nhất" />
-   <meta property="og:image" content="" />
-   <meta property="og:image:width" content="300" />
-   <meta property="og:image:height" content="55" />
+
+   <title>Bách khoa sinh vật</title>
+
    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
    <link rel='dns-prefetch' href='//s.w.org' />
@@ -45,19 +32,19 @@
    </style>
    <style>
       #header .site-title {
-         background: url(https://www.pngkey.com/png/detail/360-3601772_your-logo-here-your-company-logo-here-png.png) no-repeat top left;
+         background: url("{{ asset('uploads/logo-icon/logo HyDrex.jpg') }}") no-repeat top left;
          background-size: contain;
          text-indent: -9999px;
       }
    </style>
 </head>
 
-<body class="home blog halimthemes halimmovies" data-masonry="">
+<body class="home blog halimthemes halim" data-masonry="">
    <header id="header">
       <div class="container">
          <div class="row" id="headwrap">
             <div class="col-md-3 col-sm-6 slogan">
-               <p class="site-title"><a class="logo" href="" title="phim hay ">Phim Hay</p>
+               <p class="site-title"><a class="logo" href="" title="phim hay ">Sinh Vật</p>
                </a>
             </div>
             <div class="col-md-5 col-sm-6 halim-search-form hidden-xs">
@@ -76,13 +63,7 @@
                   </div>
                </div>
             </div>
-            <div class="col-md-4 hidden-xs">
-               <div id="get-bookmark" class="box-shadow"><i class="hl-bookmark"></i><span> Bookmarks</span><span
-                     class="count">0</span></div>
-               <div id="bookmark-list" class="hidden bookmark-list-on-pc">
-                  <ul style="margin: 0;"></ul>
-               </div>
-            </div>
+
          </div>
       </div>
    </header>
@@ -101,27 +82,19 @@
                   data-toggle="collapse" data-target="#search-form" aria-expanded="false">
                   <span class="hl-search" aria-hidden="true"></span>
                </button>
-               <button type="button" class="navbar-toggle collapsed pull-right get-bookmark-on-mobile">
-                  Bookmarks<i class="hl-bookmark" aria-hidden="true"></i>
-                  <span class="count">0</span>
-               </button>
-               <button type="button" class="navbar-toggle collapsed pull-right get-locphim-on-mobile">
-                  <a href="javascript:;" id="expand-ajax-filter" style="color: #ffed4d;">Lọc <i
-                        class="fas fa-filter"></i></a>
-               </button>
             </div>
             <div class="collapse navbar-collapse" id="halim">
                <div class="menu-menu_1-container">
                   <ul id="menu-menu_1" class="nav navbar-nav navbar-left">
                      <li class="current-menu-item active"><a title="Trang Chủ" href="{{route('homepage')}}">Trang Chủ</a></li>
                      @foreach ($category as $key=>$cate)
-                           <li class="mega"><a title="Phim Mới" href="{{route('category', $cate->slug)}}">{{$cate->title}}</a></li>
+                           <li class="mega"><a title="Sinh vat" href="{{route('category', $cate->slug)}}">{{$cate->title}}</a></li>
                      @endforeach
                     
 
                      <li class="mega dropdown">
                         <a title="Thể Loại" href="#" data-toggle="dropdown" class="dropdown-toggle"
-                           aria-haspopup="true">Thể Loại <span class="caret"></span></a>
+                           aria-haspopup="true">Loài <span class="caret"></span></a>
                         <ul role="menu" class=" dropdown-menu">
                         @foreach ($specie as $key=>$gen)
                            <li><a title="{{$gen->title}}" href="{{route('specie',$gen->slug)}}">{{$gen->title}}</a></li>
@@ -130,14 +103,14 @@
                      </li>
                      <li class="mega dropdown">
                         <a title="Quốc Gia" href="#" data-toggle="dropdown" class="dropdown-toggle"
-                           aria-haspopup="true">Quốc Gia <span class="caret"></span></a>
+                           aria-haspopup="true">Nơi sống <span class="caret"></span></a>
                         <ul role="menu" class=" dropdown-menu">
                         @foreach ($location as $key=>$count)
                            <li><a title="{{$count->title}}" href="{{route('location',$count->slug)}}">{{$count->title}}</a></li>
                         @endforeach
                         </ul>
                      </li>
-                     <li class="mega dropdown">
+                     {{-- <li class="mega dropdown">
                         <a title="Năm phim" href="#" data-toggle="dropdown" class="dropdown-toggle"
                            aria-haspopup="true">Năm Phim <span class="caret"></span></a>
                         <ul role="menu" class=" dropdown-menu">
@@ -146,13 +119,11 @@
                        @endfor
                        
                         </ul>
-                     </li>
+                     </li> --}}
                     
                   </ul>
                </div>
-               <ul class="nav navbar-nav navbar-left" style="background:#000;">
-                  <li><a href="#" onclick="locphim()" style="color: #ffed4d;">Lọc Phim</a></li>
-               </ul>
+
             </div>
          </nav>
          <div class="collapse navbar-collapse" id="search-form">
@@ -178,11 +149,10 @@
             <div class="widget about col-xs-12 col-sm-4 col-md-4">
                <div class="footer-logo">
                   <img class="img-responsive"
-                     src="https://scontent.fdad3-6.fna.fbcdn.net/v/t39.30808-6/306278645_409899911269800_8764223491661501521_n.png?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHF6N8ad0VCNNckjhTJMr5BOxDJDGLI-AA7EMkMYsj4ALUvAqOBHt_eguh1pS3i2sGGaf0BTMRWWgmVhOBfTsts&_nc_ohc=v0jKxqBiqdgQ7kNvgGTBo34&_nc_zt=23&_nc_ht=scontent.fdad3-6.fna&_nc_gid=Af195XJUYsu9X8TLXMF9dxu&oh=00_AYDVrjVCr4RPlRX3HJl9gL3wfnodhpw0nKJz65VBdbuEzg&oe=673256B9"
-                     alt="Phim hay 2021- Xem phim hay nhất" />
+                     src=""
+                     alt="web sinh vật hay nhất" />
                </div>
-               Liên hệ QC: <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                  data-cfemail="e5958d8c888d849ccb868aa58288848c89cb868a88">[email&#160;protected]</a>
+               Liên hệ Admin: <a href="https://www.facebook.com/huy.lenhat.58323">Facebook</a>
             </div>
          </div>
       </div>

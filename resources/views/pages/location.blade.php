@@ -5,8 +5,7 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6">
-                        <div class="yoast_breadcrumb hidden-xs"><span><span><a href="">{{ $location_slug->title }}</a> »
-                                    <span class="breadcrumb_last" aria-current="page">2020</span></span></span></div>
+                        <div class="yoast_breadcrumb hidden-xs"><span><span><a href="">{{ $location_slug->title }}</a></div>
                     </div>
                 </div>
             </div>
@@ -17,7 +16,7 @@
         <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
             <section>
                 <div class="section-bar clearfix">
-                    <h1 class="section-title"><span>{{ $location_slug->title }}</span></h1>
+                    <h1 class="section-title"><span>{{ $location_slug->description }}</span></h1>
                 </div>
                 <div class="halim_box">
                     @foreach ($detail as $key => $det)
@@ -61,14 +60,6 @@
                 </div>
                 <div class="clearfix"></div>
                 <div class="text-center">
-                    {{-- <ul class='page-numbers'>
-                        <li><span aria-current="page" class="page-numbers current">1</span></li>
-                        <li><a class="page-numbers" href="">2</a></li>
-                        <li><a class="page-numbers" href="">3</a></li>
-                        <li><span class="page-numbers dots">&hellip;</span></li>
-                        <li><a class="page-numbers" href="">55</a></li>
-                        <li><a class="next page-numbers" href=""><i class="hl-down-open rotate-right"></i></a></li>
-                    </ul> --}}
                     {!! $detail->links('pagination::bootstrap-5') !!}
                 </div>
             </section>
